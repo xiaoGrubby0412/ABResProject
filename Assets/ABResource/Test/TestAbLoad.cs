@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+using Asgard;
 using Asgard.Resource;
 
 public class TestAbLoad : MonoBehaviour
@@ -22,9 +21,9 @@ public class TestAbLoad : MonoBehaviour
 
     public void TestGetObj()
     {
-        Asgard.AsgardGame.AbResChecker.GetLatestVersion(() => 
+        ABResChecker.Instance.GetLatestVersion(() => 
         {
-            Asgard.AsgardGame.AbResExplorer.GetResourceY(testAbName6, OnGetTest, null);
+            ABResExplorer.Instance.GetResourceY(testAbName6, OnGetTest, null);
             //BaseResource res = Asgard.AsgardGame.AbResExplorer.GetResourceT(testAbName6);
             //GameObject go = res.InstanceObj;
         });
@@ -36,7 +35,7 @@ public class TestAbLoad : MonoBehaviour
     {
         GameObject go = baseResource.InstanceObj;
         baseResource.UnLoad();
-        Asgard.AsgardGame.AbResExplorer.GetResourceY(testAbName6, OnGetTest2, null);
+        ABResExplorer.Instance.GetResourceY(testAbName6, OnGetTest2, null);
     }
 
     private void OnGetTest2(BaseResource baseResource)

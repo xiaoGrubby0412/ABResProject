@@ -1,23 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 using Asgard.Resource;
 namespace Asgard
 {
-    public class ABResExplorer : ISubSystem
+    public class ABResExplorer
     {
         public BaseResource[] allResourceList = null;
         public Dictionary<string, BaseResource> mResourcesMap = null;
         private Dictionary<AtlasResourceEnum.AtlasType, AtlasResource> mAtlasResMap = null;
         private ABResLoaderManager abResLoader = null;
 
+        private static ABResExplorer instance = null;
+
+        public static ABResExplorer Instance 
+        {
+            get 
+            {
+                if (instance == null) 
+                {
+                    instance = new ABResExplorer();
+                }
+
+                return instance;
+
+            }
+        }
         public void InitSys()
         {
             mAtlasResMap = new Dictionary<AtlasResourceEnum.AtlasType, AtlasResource>();
             mResourcesMap = new Dictionary<string, BaseResource>();
-            abResLoader = AsgardGame.AbResLoader;
+            abResLoader = ABResLoaderManager.Instance;
         }
 
         public void InitData()
@@ -282,7 +295,7 @@ namespace Asgard
                 ABResMapItemScriptObj obj = new ABResMapItemScriptObj();
                 obj.AssetBundleName = assetBundleName;
                 obj.ABResType = ABResMapScriptObj.ABResTypeMain;
-                BaseResource resource = AsgardGame.AbResChecker.CreateResource(obj, BaseResource.ResourceState.Create, BaseResource.Storage.Internal);
+                BaseResource resource = ABResChecker.Instance.CreateResource(obj, BaseResource.ResourceState.Create, BaseResource.Storage.Internal);
                 resource.Load();
                 mResourcesMap.Add(assetBundleName, resource);
             }
@@ -321,7 +334,7 @@ namespace Asgard
                     ABResMapItemScriptObj obj = new ABResMapItemScriptObj();
                     obj.AssetBundleName = assetBundleNames[i];
                     obj.ABResType = ABResMapScriptObj.ABResTypeMain;
-                    BaseResource resource = AsgardGame.AbResChecker.CreateResource(obj, BaseResource.ResourceState.Create, BaseResource.Storage.Internal);
+                    BaseResource resource = ABResChecker.Instance.CreateResource(obj, BaseResource.ResourceState.Create, BaseResource.Storage.Internal);
                     resource.Load();
                     mResourcesMap.Add(assetBundleNames[i], resource);
                 }
@@ -365,7 +378,7 @@ namespace Asgard
                 ABResMapItemScriptObj obj = new ABResMapItemScriptObj();
                 obj.AssetBundleName = assetBundleName;
                 obj.ABResType = ABResMapScriptObj.ABResTypeMain;
-                BaseResource resource = AsgardGame.AbResChecker.CreateResource(obj, BaseResource.ResourceState.Create, BaseResource.Storage.Internal);
+                BaseResource resource = ABResChecker.Instance.CreateResource(obj, BaseResource.ResourceState.Create, BaseResource.Storage.Internal);
                 mResourcesMap.Add(assetBundleName, resource);
             }
             abResLoader.LoadResource(mResourcesMap[assetBundleName], allFinishAction, itemFinishAction);
@@ -414,7 +427,7 @@ namespace Asgard
                     ABResMapItemScriptObj obj = new ABResMapItemScriptObj();
                     obj.AssetBundleName = assetBundleNames[i];
                     obj.ABResType = ABResMapScriptObj.ABResTypeMain;
-                    BaseResource resource = AsgardGame.AbResChecker.CreateResource(obj, BaseResource.ResourceState.Create, BaseResource.Storage.Internal);
+                    BaseResource resource = ABResChecker.Instance.CreateResource(obj, BaseResource.ResourceState.Create, BaseResource.Storage.Internal);
                     mResourcesMap.Add(assetBundleNames[i], resource);
                 }
                 list.Add(mResourcesMap[assetBundleNames[i]]);

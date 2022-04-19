@@ -425,58 +425,58 @@ public class SetVersionWindow : EditorWindow
             ABResMapEditor.SaveAbResourceMap();
             stateStr = "设置完毕！版本号为 " + version;
         }
-        if (GUILayout.Button("打包所有资源 重新打包Atlas并且替换UI"))
-        {
-            OutAtlas.ExportAtlas();
-            AssetDatabase.Refresh();
-            ReplacePrefabSrc.ReplaceAllRefabToAtlas();
-            AssetDatabase.Refresh();
-            ABResBuilder.BuildAllAssetBundle();
-        }
+        //if (GUILayout.Button("打包所有资源 重新打包Atlas并且替换UI"))
+        //{
+        //    OutAtlas.ExportAtlas();
+        //    AssetDatabase.Refresh();
+        //    ReplacePrefabSrc.ReplaceAllRefabToAtlas();
+        //    AssetDatabase.Refresh();
+        //    ABResBuilder.BuildAllAssetBundle();
+        //}
         if (GUILayout.Button("打包所有资源"))
         {
             ABResBuilder.BuildAllAssetBundle();
         }
         EditorGUILayout.Space();
 
-        if (GUILayout.Button("打包 -> 内网"))
-        {
-            BuildPackage.BulidTarget("SkipGuidepGuide1;USEAB", "neiwang_");
-        }
-        if(GUILayout.Button("打包 -> 外网"))
-        {
-            BuildPackage.BulidTarget("SkipGuidepGuide1;NET_OUTER;USEAB", "waiwang_");
-        }
-        if(GUILayout.Button("打包 -> 外网QQ"))
-        {
-            BuildPackage.BulidTarget("SkipGuidepGuide1;NET_OUTER;QQLogin;USEAB;NO_FPS", "waiwang_qq_test_");
-        }
-        if (GUILayout.Button("打包 -> 外网QQ正式版"))
-        {
-            BuildPackage.BulidTarget("SkipGuidepGuide1;NET_OUTER;QQLogin;USEAB;NO_FPS;ZHENG_SHI_NET", "waiwang_qq_official_");
-        }
-        if (GUILayout.Button("打包 -> 外网审计版"))
-        {
-            BuildPackage.BulidTarget("SkipGuidepGuide1;NET_OUTER;SHEN_JI_NET;USEAB;NO_FPS", "waiwang_shenji_");
-        }
+        //if (GUILayout.Button("打包 -> 内网"))
+        //{
+        //    BuildPackage.BulidTarget("SkipGuidepGuide1;USEAB", "neiwang_");
+        //}
+        //if(GUILayout.Button("打包 -> 外网"))
+        //{
+        //    BuildPackage.BulidTarget("SkipGuidepGuide1;NET_OUTER;USEAB", "waiwang_");
+        //}
+        //if(GUILayout.Button("打包 -> 外网QQ"))
+        //{
+        //    BuildPackage.BulidTarget("SkipGuidepGuide1;NET_OUTER;QQLogin;USEAB;NO_FPS", "waiwang_qq_test_");
+        //}
+        //if (GUILayout.Button("打包 -> 外网QQ正式版"))
+        //{
+        //    BuildPackage.BulidTarget("SkipGuidepGuide1;NET_OUTER;QQLogin;USEAB;NO_FPS;ZHENG_SHI_NET", "waiwang_qq_official_");
+        //}
+        //if (GUILayout.Button("打包 -> 外网审计版"))
+        //{
+        //    BuildPackage.BulidTarget("SkipGuidepGuide1;NET_OUTER;SHEN_JI_NET;USEAB;NO_FPS", "waiwang_shenji_");
+        //}
 
         EditorGUILayout.Space();
 
         if (GUILayout.Button("设置宏 -> CDN资源模式"))
         {
-            BuildPackage.SetScenesByType(1);
+            //BuildPackage.SetScenesByType(1);
             BuildTargetGroup targetGroup = BuildTargetGroup.Standalone;
             PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, "USEAB;USECDN");
         }
         if (GUILayout.Button("设置宏 -> 本地资源模式"))
         {
-            BuildPackage.SetScenesByType(1);
+            //BuildPackage.SetScenesByType(1);
             BuildTargetGroup targetGroup = BuildTargetGroup.Standalone;
             PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, "USEAB");
         }
         if (GUILayout.Button("设置宏 -> 普通模式"))
         {
-            BuildPackage.SetScenesByType(0);
+            //BuildPackage.SetScenesByType(0);
             BuildTargetGroup targetGroup = BuildTargetGroup.Standalone;
             PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, "asdaa");
         }

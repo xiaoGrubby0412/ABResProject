@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using Asgard;
+﻿using System.Collections.Generic;
 using Asgard.Resource;
 using UnityEngine;
-using System.Net;
-using System.IO;
 
 namespace Asgard
 {
-    public class DownLoadResShareableData : IShareableData
+    public class DownLoadResShareableData
     {
         public DownLoadResShareableData(float p)
         {
@@ -22,14 +15,14 @@ namespace Asgard
         public int allCount = 1;
     }
 
-    public class ABResBackDownloader : ISubSystem
+    public class ABResBackDownloader
     {
         public bool ifDownLoadInBG = true;
         public Queue<BaseResource> needDownloadResInBg = new Queue<BaseResource>();
 
         public void AddQueueByType(int[] loadTypes)
         {
-            foreach (KeyValuePair<string, BaseResource> pair in AsgardGame.AbResExplorer.mResourcesMap)
+            foreach (KeyValuePair<string, BaseResource> pair in ABResExplorer.Instance.mResourcesMap)
             {
                 for (int i = 0; i < loadTypes.Length; i++)
                 {
@@ -56,32 +49,32 @@ namespace Asgard
         bool ifInit = false;
         public void InitDownloadNames()
         {
-            if (ifInit) return;
-            Dictionary<string, MetaDataBase> dic = AsgardGame.MetaData.GetMetaDataMap<MD_BgDown>();
-            if (dic != null && dic.Count > 0)
-            {
-                int i = 0;
-                names = new string[dic.Count];
-                foreach (KeyValuePair<string, MetaDataBase> pair in dic)
-                {
-                    names[i++] = "medias/meishu/scene/" + ((MD_BgDown)pair.Value).scenename.ToLower() + ".unity3d";
-                }
-            }
+            //if (ifInit) return;
+            //Dictionary<string, MetaDataBase> dic = AsgardGame.MetaData.GetMetaDataMap<MD_BgDown>();
+            //if (dic != null && dic.Count > 0)
+            //{
+            //    int i = 0;
+            //    names = new string[dic.Count];
+            //    foreach (KeyValuePair<string, MetaDataBase> pair in dic)
+            //    {
+            //        names[i++] = "medias/meishu/scene/" + ((MD_BgDown)pair.Value).scenename.ToLower() + ".unity3d";
+            //    }
+            //}
 
-            ifInit = true;
+            //ifInit = true;
 
         }
         private int AllNeedDownLoadResCount = 0;
         public void StartDownLoadResByAbNameBg()
         {
-            InitDownloadNames();
+            //InitDownloadNames();
             if (needDownloadResInBg.Count <= 0)
             {
                 for (int i = 0; i < names.Length; i++)
                 {
-                    if (AsgardGame.AbResExplorer.mResourcesMap.ContainsKey(names[i]))
+                    if (ABResExplorer.Instance.mResourcesMap.ContainsKey(names[i]))
                     {
-                        BaseResource res = AsgardGame.AbResExplorer.mResourcesMap[names[i]];
+                        BaseResource res = ABResExplorer.Instance.mResourcesMap[names[i]];
 
                         for (int j = 0; j < res.dependResourceList.Count; j++)
                         {
@@ -107,14 +100,14 @@ namespace Asgard
             if (needDownloadResInBg.Count > 0)
             {
                 AllNeedDownLoadResCount = needDownloadResInBg.Count;
-                AsgardGame.AbResLoader.LoadResource(needDownloadResInBg.Dequeue(), OoAllFinishAction, null, true);
+                ABResLoaderManager.Instance.LoadResource(needDownloadResInBg.Dequeue(), OoAllFinishAction, null, true);
                 Debug.Log("开始后台下载..");
             }
             else
             {
                 AllNeedDownLoadResCount = 0;
                 Debug.Log("已经没有需要后台下载的资源了");
-                AsgardGame.DataDispatcher.BroadcastData(GameNotifyMessage.NOTIFY_ACTIVIYT_HAS_DOWNLOADRES, 3, new DownLoadResShareableData(1.0f));
+                //AsgardGame.DataDispatcher.BroadcastData(GameNotifyMessage.NOTIFY_ACTIVIYT_HAS_DOWNLOADRES, 3, new DownLoadResShareableData(1.0f));
             }
 
         }
@@ -127,17 +120,17 @@ namespace Asgard
             DownLoadResShareableData d = new DownLoadResShareableData(progress);
             d.curCount = count;
             d.allCount = AllNeedDownLoadResCount;
-            AsgardGame.DataDispatcher.BroadcastData(GameNotifyMessage.NOTIFY_ACTIVIYT_HAS_DOWNLOADRES, 1, d);
+            //AsgardGame.DataDispatcher.BroadcastData(GameNotifyMessage.NOTIFY_ACTIVIYT_HAS_DOWNLOADRES, 1, d);
             if (needDownloadResInBg.Count > 0 && ifDownLoadInBG)
             {
-                AsgardGame.AbResLoader.LoadResource(needDownloadResInBg.Dequeue(), OoAllFinishAction, null, true);
+                ABResLoaderManager.Instance.LoadResource(needDownloadResInBg.Dequeue(), OoAllFinishAction, null, true);
             }
             else
             {
                 if (needDownloadResInBg.Count <= 0)
                 {
                     Debug.Log("已经没有需要后台下载的资源了");
-                    AsgardGame.DataDispatcher.BroadcastData(GameNotifyMessage.NOTIFY_ACTIVIYT_HAS_DOWNLOADRES, 3, new DownLoadResShareableData(1.0f));
+                    //AsgardGame.DataDispatcher.BroadcastData(GameNotifyMessage.NOTIFY_ACTIVIYT_HAS_DOWNLOADRES, 3, new DownLoadResShareableData(1.0f));
                 }
                 else
                 {

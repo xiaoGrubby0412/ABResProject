@@ -1,18 +1,28 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using Asgard;
 using Asgard.Resource;
 using UnityEngine;
 using System.Net;
-using System.IO;
 
 namespace Asgard
 {
-    public class ABResChecker : ISubSystem
+    public class ABResChecker
     {
+        private static ABResChecker instance;
+        public static ABResChecker Instance 
+        {
+            get 
+            {
+                if (instance == null) 
+                {
+                    instance = new ABResChecker();
+                }
+
+                return instance; 
+            }
+        }
+
         public static Dictionary<string, int> buildResDic = new Dictionary<string, int>()
         {
             {"Assets/Medias/Audios",ABResMapScriptObj.ABLoadTypeAudio},
@@ -45,7 +55,7 @@ namespace Asgard
         private Action OnCreataAllResAction = null;
         public void GetLatestVersion(Action OnCreataAllResAction)
         {
-            DispatcherProinfo(ProgressInfo.ProgressType.CHACK_RES);
+            //DispatcherProinfo(ProgressInfo.ProgressType.CHACK_RES);
 
             this.OnCreataAllResAction = OnCreataAllResAction;
 #if !USEAB
@@ -298,36 +308,36 @@ namespace Asgard
             allResources = null;
             Debug.Log("开始加载配置表资源");
 
-            allCount = AsgardGame.AbResExplorer.DownLoadResourceByType(new int[]{
+            allCount = ABResExplorer.Instance.DownLoadResourceByType(new int[]{
                             ABResMapScriptObj.ABLoadTypeConfigDatas,
             },
                             OnAllDownLoadFinishAction, OnItemDownLoadFinishAction);
 
             System.GC.Collect();
             curCount = 0;
-            DispatcherProinfo(ProgressInfo.ProgressType.UPDATA);
+            //DispatcherProinfo(ProgressInfo.ProgressType.UPDATA);
         }
 
         public int allCount;
         public int curCount = 0;
-        public void DispatcherProinfo(ProgressInfo.ProgressType type)
-        {
-            ProgressInfo info = new ProgressInfo();
-            info.type = type;
-            switch (info.type)
-            {
-                case ProgressInfo.ProgressType.CHACK_RES:
-                case ProgressInfo.ProgressType.FINISH:
-                    break;
-                case ProgressInfo.ProgressType.UPDATA:
-                case ProgressInfo.ProgressType.CHECK_RES_LOCAL:
-                    info.loadTotalCount = allCount;
-                    info.loadIndex = curCount;
-                    break;
-            }
+        //public void DispatcherProinfo(ProgressInfo.ProgressType type)
+        //{
+        //    ProgressInfo info = new ProgressInfo();
+        //    info.type = type;
+        //    switch (info.type)
+        //    {
+        //        case ProgressInfo.ProgressType.CHACK_RES:
+        //        case ProgressInfo.ProgressType.FINISH:
+        //            break;
+        //        case ProgressInfo.ProgressType.UPDATA:
+        //        case ProgressInfo.ProgressType.CHECK_RES_LOCAL:
+        //            info.loadTotalCount = allCount;
+        //            info.loadIndex = curCount;
+        //            break;
+        //    }
          
-            AsgardGame.DataDispatcher.BroadcastData(GameLogicConst.DATA_RESOURCE_UPDATING_PROGRESS, 0, info);
-        }
+        //    AsgardGame.DataDispatcher.BroadcastData(GameLogicConst.DATA_RESOURCE_UPDATING_PROGRESS, 0, info);
+        //}
 
         private void OnAllDownLoadFinishAction(List<BaseResource> list)
         {
@@ -337,7 +347,7 @@ namespace Asgard
 
         private void OnItemDownLoadFinishAction(BaseResource resource)
         {
-            DispatcherProinfo(++curCount == allCount ? ProgressInfo.ProgressType.FINISH : ProgressInfo.ProgressType.UPDATA);
+            //DispatcherProinfo(++curCount == allCount ? ProgressInfo.ProgressType.FINISH : ProgressInfo.ProgressType.UPDATA);
         }
 
         public BaseResource CreateResource(ABResMapItemScriptObj abResMapItem, BaseResource.ResourceState resourceState, BaseResource.Storage storage)
@@ -413,8 +423,8 @@ namespace Asgard
 
         public void InitSys()
         {
-            abResExplorer = AsgardGame.AbResExplorer;
-            abResLoader = AsgardGame.AbResLoader;
+            abResExplorer = ABResExplorer.Instance;
+            abResLoader = ABResLoaderManager.Instance;
         }
 
         public void DisposeData()
@@ -434,7 +444,7 @@ namespace Asgard
 
             if(ifItemFinshed)
             {
-                DispatcherProinfo(ProgressInfo.ProgressType.CHECK_RES_LOCAL);
+                //DispatcherProinfo(ProgressInfo.ProgressType.CHECK_RES_LOCAL);
             }
         }
 

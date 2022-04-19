@@ -1,13 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
 using System.IO;
-using System.Text;
-using Asgard;
-using Asgard.Resource;
-using System;
 
 public class WriteAtlasScript
 {

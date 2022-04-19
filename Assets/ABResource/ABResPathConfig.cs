@@ -8,7 +8,7 @@ namespace Asgard
     public class ABResPathConfig
     {
 
-        public static string UrlVersion = AsgardConst.UPDATE_RES_URL_ROOT + "version.txt";
+        public static string UrlVersion = "D:\\TestAbResProject\\" + "version.txt";
         public static string ProjectFullPath = System.IO.Path.GetFullPath(Application.dataPath).Replace("\\", "/");
         /// <summary>
         /// AB文件的ResourceMap资源文件目录

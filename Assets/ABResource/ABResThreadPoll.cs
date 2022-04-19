@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using Asgard;
-using Asgard.Resource;
 using UnityEngine;
-using System.Net;
-using System.IO;
 using System.Threading;
 
 namespace Asgard
 {
-    public class ABResThreadPoll : ISubSystem
+    public class ABResThreadPoll
     {
         private Queue<AsyncTask> queue;
         private List<AsyncTask> tasks;

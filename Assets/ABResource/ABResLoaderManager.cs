@@ -10,8 +10,22 @@ using UnityEngine;
 
 namespace Asgard
 {
-    public class ABResLoaderManager : ISubSystem
+    public class ABResLoaderManager
     {
+
+        private static ABResLoaderManager instance = null;
+        public static ABResLoaderManager Instance 
+        {
+            get 
+            {
+                if (ABResLoaderManager.instance == null) 
+                {
+                    instance = new ABResLoaderManager();
+                }
+
+                return instance;
+            }
+        }
         public void InitSys()
         {
 
