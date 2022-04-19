@@ -25,15 +25,15 @@ namespace Asgard
 
         public static Dictionary<string, int> buildResDic = new Dictionary<string, int>()
         {
-            {"Assets/Medias/Audios",ABResMapScriptObj.ABLoadTypeAudio},
-            {"Assets/TankTrack/prefab", ABResMapScriptObj.ABLoadTypeTankPerfab},
-            {"Assets/ConfigDatas", ABResMapScriptObj.ABLoadTypeConfigDatas},
-            {"Assets/GUiResource/Sprites", ABResMapScriptObj.ABLoadTypeGuiSprites},
-            {"Assets/UI/GUiResource/Atlas", ABResMapScriptObj.ABLoadTypeGuiAtlas},
-            {"Assets/UI/UILoadingPrefabs", ABResMapScriptObj.ABLoadTypeUILoadingPrefab},
-            {"Assets/UI/UIPanelPrefabs", ABResMapScriptObj.ABLoadTypeUIPanelPrefab},
-            {"Assets/Medias/MeiShu/Scene", ABResMapScriptObj.ABLoadTypeScene},
-            {"Assets/Particles/prefab", ABResMapScriptObj.ABLoadTypeEffect},
+            {"Assets/BuildRes/Audios",ABResMapScriptObj.ABLoadTypeAudio},
+            {"Assets/BuildRes/Prefabs", ABResMapScriptObj.ABLoadTypeTankPerfab},
+            {"Assets/BuildRes/ConfigDatas", ABResMapScriptObj.ABLoadTypeConfigDatas},
+            {"Assets/BuildRes/Sprites", ABResMapScriptObj.ABLoadTypeGuiSprites},
+            {"Assets/BuildRes/Atlas", ABResMapScriptObj.ABLoadTypeGuiAtlas},
+            {"Assets/BuildRes/UILoadingPrefabs", ABResMapScriptObj.ABLoadTypeUILoadingPrefab},
+            {"Assets/BuildRes/UIPanelPrefabs", ABResMapScriptObj.ABLoadTypeUIPanelPrefab},
+            {"Assets/BuildRes/Scenes", ABResMapScriptObj.ABLoadTypeScene},
+            {"Assets/BuildRes/ParticlesPrefabs", ABResMapScriptObj.ABLoadTypeEffect},
         };
 
         private enum CurResourceStoge
