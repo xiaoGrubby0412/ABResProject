@@ -83,6 +83,7 @@ namespace Asgard
             }
             GetExtendMap();
 #else
+            //在 Unity里面 并且不用CDN
             ABResMapItemScriptObj abResMapItem = new ABResMapItemScriptObj();
             abResMapItem.AssetBundleName = ABResPathConfig.ABVersionFileAssetBundleName;
             TextResource res = new TextResource(abResMapItem, BaseResource.ResourceState.NeedUpdateFromCDN, BaseResource.Storage.None);

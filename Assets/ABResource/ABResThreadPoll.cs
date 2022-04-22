@@ -15,6 +15,18 @@ namespace Asgard
         private Thread thread;
         private bool ifRun = true;
         private bool ifPause = false;
+
+        private static ABResThreadPoll instance;
+
+        public static ABResThreadPoll Instance 
+        {
+            get 
+            {
+                if (instance == null) instance = new ABResThreadPoll();
+                return instance; 
+            }
+        }
+
         public void InitData()
         {
 

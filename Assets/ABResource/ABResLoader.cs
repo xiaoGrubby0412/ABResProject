@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
-using System.IO;
+﻿using UnityEngine;
 using Asgard.Resource;
-using System.Threading;
-using System.Collections;
 
 namespace Asgard
 {

@@ -17,6 +17,17 @@ namespace Asgard
 
     public class ABResBackDownloader
     {
+        public static ABResBackDownloader instance = null;
+
+        public static ABResBackDownloader Instance 
+        {
+            get 
+            {   
+                if(instance == null) instance = new ABResBackDownloader();
+                return instance; 
+            }
+        }
+
         public bool ifDownLoadInBG = true;
         public Queue<BaseResource> needDownloadResInBg = new Queue<BaseResource>();
 

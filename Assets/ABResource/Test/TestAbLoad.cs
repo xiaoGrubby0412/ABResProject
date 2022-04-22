@@ -17,14 +17,15 @@ public class TestAbLoad : MonoBehaviour
     }
 
 
-    string testAbName6 = "tanktrack/prefab/kv1.unity3d";
+    string testAbName5 = "BuildRes/Prefabs/cube.unity3d";
+    string testAbName6 = "BuildRes/Prefabs/tree.unity3d";
 
     public void TestGetObj()
     {
         ABResChecker.Instance.GetLatestVersion(() => 
         {
             ABResExplorer.Instance.GetResourceY(testAbName6, OnGetTest, null);
-            //BaseResource res = Asgard.AsgardGame.AbResExplorer.GetResourceT(testAbName6);
+            //BaseResource res = ABResExplorer.Instance.GetResourceT(testAbName6);
             //GameObject go = res.InstanceObj;
         });
         
@@ -35,7 +36,7 @@ public class TestAbLoad : MonoBehaviour
     {
         GameObject go = baseResource.InstanceObj;
         baseResource.UnLoad();
-        ABResExplorer.Instance.GetResourceY(testAbName6, OnGetTest2, null);
+        ABResExplorer.Instance.GetResourceY(testAbName5, OnGetTest2, null);
     }
 
     private void OnGetTest2(BaseResource baseResource)

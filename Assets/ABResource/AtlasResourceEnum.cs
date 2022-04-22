@@ -1,6 +1,3 @@
-using UnityEngine;
-using System.Collections;
-using Asgard.Resource;
 
 namespace Asgard.Resource
 {
