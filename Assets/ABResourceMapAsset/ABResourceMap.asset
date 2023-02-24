@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5492e66270064649bf0aac3f74dc559, type: 3}
+  m_Name: ABResourceMap
+  m_EditorClassIdentifier: 
+  Version: 1
+  Platform: StandaloneWindows
+  Resources:
+  - ResourceType: 2
+    ABResType: 1
+    AssetBundleName: buildres/prefabs/cube.unity3d
+    Size: 29959
+    Md5: 4395e8d4778e6dd55403eba49d7dab9d
+    DependAssetBundleName: []
+    ABResLoadType: 2
+  - ResourceType: 2
+    ABResType: 1
+    AssetBundleName: buildres/prefabs/tree.unity3d
+    Size: 30143
+    Md5: b14c674e47b0fd626a043a76d6f22866
+    DependAssetBundleName: []
+    ABResLoadType: 2
+  - ResourceType: 18
+    ABResType: 1
+    AssetBundleName: abresourcemapasset/abresourcemap.unity3d
+    Size: 1538
+    Md5: b70a59df04c823d4acfc4c61ec7ce09a
+    DependAssetBundleName: []
+    ABResLoadType: 0
+  - ResourceType: 13
+    ABResType: 1
+    AssetBundleName: abresourcemapasset/version.unity3d
+    Size: 837
+    Md5: c369651a09d1520f76e4d42e049323c1
+    DependAssetBundleName: []
+    ABResLoadType: 0
